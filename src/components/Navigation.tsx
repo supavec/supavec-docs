@@ -231,6 +231,10 @@ function NavigationGroup({
 
 export const navigation: Array<NavGroup> = [
   {
+    title: 'Overview',
+    links: [{ title: 'Introduction', href: '/' }],
+  },
+  {
     title: 'Files',
     links: [
       { title: 'Upload File', href: '/endpoint/files/upload_file' },
