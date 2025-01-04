@@ -1,0 +1,60 @@
+export const metadata = {
+  title: 'Upload File',
+  description:
+    "This endpoint is used to directly upload PDF or text files to Supavec. The POST request should be a multipart form request."
+}
+
+# Upload File
+
+<Row>
+  <Col>
+
+  This endpoint is used to directly upload PDF or text files to Supavec. The `POST` request should be a multipart form request.
+
+
+  ## Query Parameters {{ tag: 'POST', label: '/upload_file' }}
+
+  Following is a description of all possible query parameters:
+  <Properties>
+    
+    <Property name="chunk_size" type="integer">
+      The chunk size (in tokens) applied when splitting the document.
+    </Property>
+    <Property name="chunk_overlap" type="integer">
+      The chunk overlap (in tokens) applied when splitting the document.
+    </Property>
+  </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const formData = new FormData();
+    formData.append("file", files[0]); // Accepts PDF (.pdf) or text (.txt) files
+
+    const response = await fetch("https://api.supavec.com/upload_file", {
+      method: "POST",
+      headers: {
+        authorization: apiKey,
+      },
+      body: formData,
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "message": "PDF file processed successfully",
+      "file_id": "4db6b5d7-b199-4bfd-9914-6991cb4ba3b6",
+      "chunks": 2,
+      "chunk_size": 1000,
+      "chunk_overlap": 200
+    }
+    ```
+
+  </Col>
+</Row>

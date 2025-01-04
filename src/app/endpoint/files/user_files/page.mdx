@@ -1,0 +1,75 @@
+export const metadata = {
+  title: 'View Files',
+  description:
+    "This endpoint is used to view all your files uploaded to Supavec."
+}
+
+# View Files
+
+<Row>
+  <Col>
+
+  This endpoint is used to view all your files uploaded to Supavec.
+
+
+  ## Request Body {{ tag: 'POST', label: '/user_files' }}
+
+    <Properties>
+      <Property name="pagination" type="object">
+        Pagination parameters for the query.
+        - `limit`: `integer (default: 10)` - The number of files to fetch.
+        - `offset`: `integer (default: 0)` - The offset of the files to fetch.
+      </Property>
+      <Property name="order_dir" type="string">
+        The direction to order the results by.
+        Available options: `desc`, `asc`.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/user_files", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ pagination, order_dir }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "results": [
+        {
+          "type": "text",
+          "file_id": "939b2cd7-56d5-4c44-b491-14bfc202e9a0",
+          "created_at": "2025-01-04T03:22:10.713451+00:00",
+          "file_name": "test content 4.txt",
+          "team_id": "2ce522b2-2045-43ad-ab0a-2f48a9a041e9"
+        },
+        {
+          "type": "pdf",
+          "file_id": "4db6b5d7-b199-4bfd-9914-6991cb4ba3b6",
+          "created_at": "2025-01-04T02:56:10.252537+00:00",
+          "file_name": "1227-2024_WhisperIt-Invoice-Taishi - Invoice.pdf",
+            "team_id": "2ce522b2-2045-43ad-ab0a-2f48a9a041e9"
+        },
+      ],
+      "pagination": {
+        "offset": 0,
+        "limit": 10
+      },
+      "count": 143
+    }
+    ```
+
+  </Col>
+</Row>

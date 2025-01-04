@@ -1,0 +1,60 @@
+export const metadata = {
+  title: 'Upload Text',
+  description: "This endpoint is used to directly upload text content to Supavec."
+}
+
+# Upload Text
+
+<Row>
+  <Col>
+
+  This endpoint is used to directly upload text content to Supavec.
+
+  ##  Request Body {{ tag: 'POST', label: '/upload_text' }}
+
+  <Properties>
+    <Property name="contents" type="string" required>
+      The text content to upload. Minimum length: `5`.
+    </Property>
+    <Property name="name" type="string">
+      The name of the content.
+    </Property>
+    <Property name="chunk_size" type="integer">
+      The chunk size (in tokens) applied when splitting the document.
+    </Property>
+    <Property name="chunk_overlap" type="integer">
+      The chunk overlap (in tokens) applied when splitting the document.
+    </Property>
+  </Properties>
+
+  
+
+  </Col>
+  <Col>
+
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/upload_text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ name, contents }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+        "success": true,
+        "message": "Text uploaded and processed successfully",
+        "file_id": "939b2cd7-56d5-4c44-b491-14bfc202e9a0"
+    }
+    ```
+
+  </Col>
+</Row>

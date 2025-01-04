@@ -1,0 +1,61 @@
+export const metadata = {
+  title: 'Search',
+  description:
+    "Search for embeddings relevant to a query in a list of uploaded files."
+}
+
+# Search
+
+<Row>
+  <Col>
+
+  Search for embeddings relevant to a query in a list of uploaded files.
+
+
+  ## Request Body {{ tag: 'POST', label: '/embeddings' }}
+
+  <Properties>
+    <Property name="query" type="string" required>
+      Query for which to get related chunks and embeddings.
+    </Property>
+    <Property name="file_ids" type="array" required>
+      Array of file UUIDs to search in. Must contain at least one file ID.
+    </Property>
+    <Property name="k" type="integer">
+      Number of related chunks to return. `Default: 3`
+    </Property>
+  </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/embeddings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ query, file_ids: [fileId] }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "documents": [
+        {
+          "content": "my name is jon.",
+          "file_id": "939b2cd7-56d5-4c44-b491-14bfc202e9a0",
+          "score": "0.273"
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
