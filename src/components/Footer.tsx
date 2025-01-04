@@ -97,6 +97,41 @@ function DiscordIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function BeehiivIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg
+      version="1.0"
+      width="30"
+      height="30"
+      viewBox="40 180 230 230"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M234.52,292.19H97.95c-3.48,0-6.32-2.85-6.32-6.32v-9.64c0-10.91,8.85-19.76,19.76-19.76h109.54
+           c10.91,0,19.76,8.85,19.76,19.76v9.64C240.84,289.35,237.99,292.19,234.52,292.19z"
+      />
+      <path
+        d="M205.75,246.04h-79.03c-3.48,0-6.48-2.85-6.48-6.48l0,0c0-16.12,13.12-29.24,29.24-29.24h33.51
+           c16.12,0,29.24,13.12,29.24,29.24l0,0C212.23,243.2,209.38,246.04,205.75,246.04L205.75,246.04z"
+      />
+      <path
+        d="M240.84,302.63H91.63c-9.8,0-17.86,8.06-17.86,17.86s8.06,17.86,17.86,17.86h52.95
+           c1.9-10.12,10.75-17.86,21.5-17.86c10.75,0,19.76,7.74,21.65,17.86h52.95c9.8,0,17.86-8.06,17.86-17.86
+           S250.64,302.63,240.84,302.63L240.84,302.63z"
+      />
+      <path
+        d="M234.36,348.78h-46.31v35.72h34.77c9.8,0,17.86-8.06,17.86-17.86v-11.38
+             C240.84,351.78,237.99,348.78,234.36,348.78L234.36,348.78z"
+      />
+      <path
+        d="M97.95,348.78c-3.48,0-6.48,2.85-6.48,6.48v11.38c0,9.8,8.06,17.86,17.86,17.86h34.77v-35.72
+             C144.26,348.78,97.95,348.78,97.95,348.78z"
+      />
+    </svg>
+  )
+}
+
 function SocialLink({
   href,
   icon: Icon,
@@ -118,7 +153,8 @@ function SmallPrint() {
   return (
     <div className="flex flex-col items-center justify-between gap-5 border-t border-zinc-900/5 pt-8 sm:flex-row dark:border-white/5">
       <p className="text-xs text-zinc-600 dark:text-zinc-400">
-        &copy; Copyright {new Date().getFullYear()}. All rights reserved.
+        Supavec &copy; Copyright {new Date().getFullYear()}. All rights
+        reserved.
       </p>
       <div className="flex gap-4">
         <SocialLink href="https://x.com/supavec_ai" icon={XIcon}>
@@ -132,6 +168,12 @@ function SmallPrint() {
         </SocialLink>
         <SocialLink href="https://discord.gg/MS9CjPeXF4" icon={DiscordIcon}>
           Join our Discord server
+        </SocialLink>
+        <SocialLink
+          href="https://supavec-ship-letter.beehiiv.com"
+          icon={BeehiivIcon}
+        >
+          Join our newsletter
         </SocialLink>
       </div>
     </div>
