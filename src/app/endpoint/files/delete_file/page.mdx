@@ -1,0 +1,49 @@
+export const metadata = {
+  title: 'Delete File',
+  description:
+    "This endpoint is used to delete a file from Supavec."
+}
+
+# Delete File
+
+<Row>
+  <Col>
+
+  This endpoint is used to delete a file from Supavec.
+
+  ## Request Body {{ tag: 'POST', label: '/delete_file' }}
+
+    <Properties>
+      <Property name="file_id" type="string">
+        The ID of the file to delete.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/delete_file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ file_id }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "message": "File marked as deleted successfully",
+      "deleted_file_id": "7c13cfbe-8c98-48aa-a324-e9adf2c39ecf"
+    }
+    ```
+
+  </Col>
+</Row>

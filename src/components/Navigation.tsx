@@ -240,6 +240,7 @@ export const navigation: Array<NavGroup> = [
       { title: 'Upload File', href: '/endpoint/files/upload_file' },
       { title: 'Upload Text', href: '/endpoint/files/upload_text' },
       { title: 'View Files', href: '/endpoint/files/user_files' },
+      { title: 'Delete File', href: '/endpoint/files/delete_file' },
     ],
   },
   {
