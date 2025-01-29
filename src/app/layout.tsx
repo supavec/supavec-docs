@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     template: '%s - Supavec API Reference',
     default: 'Supavec API Reference',
   },
+  metadataBase: new URL('https://docs.supavec.com'),
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default async function RootLayout({
