@@ -14,10 +14,7 @@ import { remToPx } from '@/lib/remToPx'
 
 interface NavGroup {
   title: string
-  links: Array<{
-    title: string
-    href: string
-  }>
+  links: Array<{ title: string; href: string }>
 }
 
 function useInitialValue<T>(value: T, condition = true) {
@@ -198,14 +195,8 @@ function NavigationGroup({
                   <motion.ul
                     role="list"
                     initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { delay: 0.1 },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      transition: { duration: 0.15 },
-                    }}
+                    animate={{ opacity: 1, transition: { delay: 0.1 } }}
+                    exit={{ opacity: 0, transition: { duration: 0.15 } }}
                   >
                     {sections.map((section) => (
                       <li key={section.id}>
@@ -230,10 +221,7 @@ function NavigationGroup({
 }
 
 export const navigation: Array<NavGroup> = [
-  {
-    title: 'Overview',
-    links: [{ title: 'Introduction', href: '/' }],
-  },
+  { title: 'Overview', links: [{ title: 'Introduction', href: '/' }] },
   {
     title: 'Files',
     links: [
@@ -241,6 +229,7 @@ export const navigation: Array<NavGroup> = [
       { title: 'Upload Text', href: '/endpoint/files/upload_text' },
       { title: 'View Files', href: '/endpoint/files/user_files' },
       { title: 'Delete File', href: '/endpoint/files/delete_file' },
+      { title: 'Resync File', href: '/endpoint/files/resync_file' },
     ],
   },
   {

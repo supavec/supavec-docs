@@ -1,0 +1,56 @@
+export const metadata = {
+  title: 'Resync File',
+  description:
+    "This endpoint is used to re-generate embeddings for the specified file.",
+  alternates: {
+    canonical: '/endpoint/files/resync_file'
+  }
+}
+
+# Resync File
+
+<Row>
+  <Col>
+
+  This endpoint is used to re-generate embeddings for the specified file.
+
+  ## Request Body {{ tag: 'POST', label: '/resync_file' }}
+
+    <Properties>
+      <Property name="file_id" type="string">
+        The ID of the file to resync
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/resync_file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ file_id }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "message": "File resynced successfully",
+      "file_id": "4db6b5d7-b199-4bfd-9914-6991cb4ba3b6",
+      "file_name": "elon_musk.txt",
+      "chunks": 2,
+      "chunk_size": 1000,
+      "chunk_overlap": 200
+    }
+    ```
+
+  </Col>
+</Row>
