@@ -17,8 +17,14 @@ export const metadata = {
   ## Request Body {{ tag: 'POST', label: '/resync_file' }}
 
     <Properties>
-      <Property name="file_id" type="string">
+      <Property name="file_id" type="string" required>
         The ID of the file to resync
+      </Property>
+      <Property name="chunk_size" type="integer">
+        The chunk size (in tokens) applied when splitting the document.
+      </Property>
+      <Property name="chunk_overlap" type="integer">
+        The chunk overlap (in tokens) applied when splitting the document.
       </Property>
     </Properties>
 
