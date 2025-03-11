@@ -1,0 +1,65 @@
+export const metadata = {
+  title: 'Overwrite Text',
+  description: "This endpoint is used to overwrite text content in Supavec.",
+  alternates: {
+    canonical: '/endpoint/files/overwrite_text'
+  }
+}
+
+# Overwrite Text
+
+<Row>
+  <Col>
+  It is similar to the [upload_text](https://docs.supavec.com/endpoint/files/upload_text) endpoint, but it overwrites the existing text content.
+
+  ##  Request Body {{ tag: 'POST', label: '/overwrite_text' }}
+
+  <Properties>
+    <Property name="file_id" type="string" required>
+      The ID of the file to overwrite.
+    </Property>
+    <Property name="contents" type="string" required>
+      The text content to upload. Minimum length: `5`.
+    </Property>
+    <Property name="name" type="string">
+      The name of the content.
+    </Property>
+    <Property name="chunk_size" type="integer">
+      The chunk size (in tokens) applied when splitting the document.
+    </Property>
+    <Property name="chunk_overlap" type="integer">
+      The chunk overlap (in tokens) applied when splitting the document.
+    </Property>
+  </Properties>
+
+  
+
+  </Col>
+  <Col>
+
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/overwrite_text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ file_id, contents, name, chunk_size, chunk_overlap }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "success": true,
+      "message": "File overwritten successfully",
+      "file_id": "a2eacfa8-36a6-4eb7-aa86-52fc722057f9"
+    }
+    ```
+
+  </Col>
+</Row>

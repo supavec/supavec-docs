@@ -227,9 +227,10 @@ export const navigation: Array<NavGroup> = [
     links: [
       { title: 'Upload File', href: '/endpoint/files/upload_file' },
       { title: 'Upload Text', href: '/endpoint/files/upload_text' },
-      { title: 'View Files', href: '/endpoint/files/user_files' },
-      { title: 'Delete File', href: '/endpoint/files/delete_file' },
       { title: 'Resync File', href: '/endpoint/files/resync_file' },
+      { title: 'Overwrite Text', href: '/endpoint/files/overwrite_text' },
+      { title: 'Delete File', href: '/endpoint/files/delete_file' },
+      { title: 'View Files', href: '/endpoint/files/user_files' },
     ],
   },
   {
