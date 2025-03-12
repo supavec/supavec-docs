@@ -235,7 +235,13 @@ export const navigation: Array<NavGroup> = [
   },
   {
     title: 'Retrieval',
-    links: [{ title: 'Search', href: '/endpoint/embeddings/embeddings' }],
+    links: [
+      { title: 'Search', href: '/endpoint/retrieval/search' },
+      {
+        title: 'Embeddings (deprecated)',
+        href: '/endpoint/embeddings/embeddings',
+      },
+    ],
   },
 ]
 

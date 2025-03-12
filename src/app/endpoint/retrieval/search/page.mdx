@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Embeddings (deprecated)',
+  title: 'Search',
   description:
     "Search for embeddings relevant to a query in a list of uploaded files.",
   alternates: {
@@ -7,17 +7,15 @@ export const metadata = {
   }
 }
 
-# Embeddings (deprecated)
+# Search
 
 <Row>
   <Col>
 
-  This endpoint is deprecated. Please use the [Search](https://www.supavec.com/endpoint/retrieval/search) endpoint instead.
-
   Search for embeddings relevant to a query in a list of uploaded files.
 
 
-  ## Request Body {{ tag: 'POST', label: '/embeddings' }}
+  ## Request Body {{ tag: 'POST', label: '/search' }}
 
   <Properties>
     <Property name="query" type="string" required>
@@ -39,7 +37,7 @@ export const metadata = {
     </Note>
 
     ```ts {{ language: 'js', title: 'JavaScript' }}
-    const res = await fetch("https://api.supavec.com/embeddings", {
+    const res = await fetch("https://api.supavec.com/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
