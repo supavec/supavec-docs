@@ -243,6 +243,10 @@ export const navigation: Array<NavGroup> = [
       },
     ],
   },
+  {
+    title: 'Chat',
+    links: [{ title: 'Chat', href: '/endpoint/chat/chat' }],
+  },
 ]
 
 export function Navigation(props: React.ComponentPropsWithoutRef<'nav'>) {

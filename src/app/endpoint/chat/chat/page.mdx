@@ -1,0 +1,72 @@
+export const metadata = {
+  title: 'Chat',
+  description:
+    "Chat with your uploaded files.",
+  alternates: {
+    canonical: '/endpoint/chat/chat'
+  }
+}
+
+# Chat
+
+<Row>
+  <Col>
+
+  Chat with your uploaded files.
+
+  ## Request Body {{ tag: 'POST', label: '/chat' }}
+
+  <Properties>
+    <Property name="query" type="string" required>
+      Query for which to get related chunks and embeddings.
+    </Property>
+    <Property name="file_ids" type="array" required>
+      Array of file UUIDs to search in. Must contain at least one file ID.
+    </Property>
+    <Property name="k" type="integer">
+      Number of related chunks to return. `Default: 3`
+    </Property>
+    <Property name="stream" type="boolean">
+      Whether to stream the response. `Default: false`
+    </Property>
+  </Properties>
+
+  </Col>
+  <Col>
+    <Note>
+      Before you can make requests to the Supavec API, you will need to grab **your**
+      API key from [your dashboard](https://www.supavec.com/dashboard).
+    </Note>
+
+    ```ts {{ language: 'js', title: 'JavaScript' }}
+    const res = await fetch("https://api.supavec.com/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ query, file_ids: [fileId], stream: true }),
+    });
+    ```
+
+    ```json {{ title: 'Response' }}
+    // Streaming response
+  0:"Hello"
+  0:","
+  0:" how"
+  0:" can"
+  0:" I"
+  0:" help"
+  0:" you"
+  0:" today"
+  0:"?"
+    
+    // Non-streaming response
+    {
+      "success": true,
+      "text": "Hello, how can I help you today?"
+    }
+    ```
+
+  </Col>
+</Row>
