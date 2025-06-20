@@ -11,26 +11,35 @@ export const metadata = {
 <Row>
   <Col>
 
-  This endpoint is used to directly upload text content to Supavec.
+  This endpoint is used to directly upload text content to Supavec. You can either provide raw text that will be automatically chunked, or provide pre-chunked segments.
 
   ##  Request Body {{ tag: 'POST', label: '/upload_text' }}
 
   <Properties>
-    <Property name="contents" type="string" required>
-      The text content to upload. Minimum length: `5`.
+    <Property name="contents" type="string">
+      **Option A:** Raw text content to upload and chunk automatically. Minimum length: `5` characters. Cannot be used together with `segments`.
+    </Property>
+    <Property name="segments" type="array">
+      **Option B:** Pre-chunked segments to upload directly. Each segment must contain:
+      - `content` (string, required): The text content of the segment (minimum 1 character)
+      - `metadata` (object, optional): Additional metadata for the segment
+      
+      Cannot be used together with `contents`.
     </Property>
     <Property name="name" type="string">
-      The name of the content.
+      The name of the content. Defaults to `"Untitled Document"` if not provided.
     </Property>
     <Property name="chunk_size" type="integer">
-      The chunk size (in tokens) applied when splitting the document.
+      The chunk size (in tokens) applied when splitting the document. Only used when `contents` is provided. Must be a positive number.
     </Property>
     <Property name="chunk_overlap" type="integer">
-      The chunk overlap (in tokens) applied when splitting the document.
+      The chunk overlap (in tokens) applied when splitting the document. Only used when `contents` is provided. Must be a positive number and less than `chunk_size`.
     </Property>
   </Properties>
 
-  
+  <Note>
+    **Important:** You must provide either `contents` (for raw text) OR `segments` (for pre-chunked content), but not both. If using `contents`, ensure that `chunk_overlap` is less than `chunk_size`.
+  </Note>
 
   </Col>
   <Col>
@@ -40,14 +49,42 @@ export const metadata = {
       API key from [your dashboard](https://www.supavec.com/dashboard).
     </Note>
 
-    ```ts {{ language: 'js', title: 'JavaScript' }}
+    ```ts {{ language: 'js', title: 'JavaScript (Raw Text)' }}
     const res = await fetch("https://api.supavec.com/upload_text", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: apiKey,
       },
-      body: JSON.stringify({ name, contents }),
+      body: JSON.stringify({ 
+        name: "My Document", 
+        contents: "This is my text content...",
+        chunk_size: 1000,
+        chunk_overlap: 100
+      }),
+    });
+    ```
+
+    ```ts {{ language: 'js', title: 'JavaScript (Pre-chunked Segments)' }}
+    const res = await fetch("https://api.supavec.com/upload_text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: apiKey,
+      },
+      body: JSON.stringify({ 
+        name: "My Document", 
+        segments: [
+          {
+            content: "First chunk of content...",
+            metadata: { section: "intro" }
+          },
+          {
+            content: "Second chunk of content...",
+            metadata: { section: "body" }
+          }
+        ]
+      }),
     });
     ```
 
